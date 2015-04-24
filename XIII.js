@@ -1,6 +1,14 @@
 ;(function(_g){
   'use strict';
   function XIII(_v,_args){
+
+
+    if (typeof this === 'undefined' ) {
+      //console.log(typeof this);
+
+      return new XIII(_v,_args).getOppositeNumerals();
+    };
+
     _args = _args || {};
     if( typeof _v === 'object' ){
       _args = _v;
@@ -13,9 +21,11 @@
     this.extendedMode = _args.extendedMode || false;
 
     if( (_v+'').match(/^[0-9]+$/) ){
+      this.o = 0;
       this.aN = _v;
       this.rN = this.a2r(_v);
     }else if( _v.match(/^[IVXLCDM]+$/) ){
+      this.o = 1;
       this.rN = _v;
       this.aN = this.r2a(_v);
     }else{
@@ -35,6 +45,10 @@
 
   XIII.prototype.getRomanNumerals = function() {
     return this.rN;
+  };
+
+  XIII.prototype.getOppositeNumerals = function() {
+    return this.o?this.aN:this.rN;
   };
 
   XIII.prototype.or2a = function(_v) {
