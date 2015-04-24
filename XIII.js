@@ -2,16 +2,22 @@
 
   function XIII(_v,_args){
     _args = _args || {};
-    _v = _v || '';
+    if( typeof _v === 'object' ){
+      _args = _v;
+      _v = _args.value || '';
+    }else{
+      _v = _v || '';
+    }
 
     this.u = ['I','V','X','L','C','D','M'];
+    this.extendedMode = _args.extendedMode || false;
 
-    if( _v.match(/[0-9]+/) ){
-      this.rN = null;
-      this.aN = null;
-    }else if( _v.match(/[IVXLCDM]+/) ){
-      this.rN = null;
-      this.aN = null;
+    if( (_v+'').match(/^[0-9]+$/) ){
+      this.aN = _v;
+      this.rN = this.a2r(_v);
+    }else if( _v.match(/^[IVXLCDM]+$/) ){
+      this.rN = _v;
+      this.aN = this.r2a(_v);
     }else{
       this.rN = 'I';
       this.aN = 1;
@@ -24,11 +30,11 @@
   _g.XIII = XIII;
 
   XIII.prototype.getArabicNumerals = function() {
-
+    return this.aN;
   };
 
   XIII.prototype.getRomanNumerals = function() {
-
+    return this.rN;
   };
 
   XIII.prototype.or2a = function(_v) {
@@ -83,8 +89,16 @@
           }
           ret=this.u[i*2+1]+ret;
         }else{
-          if( nTmp==4 ){console.log(this.u[i*2]+this.u[i*2+1]);ret=this.u[i*2]+this.u[i*2+1]+ret;}
-          else{ret=this.u[i*2]+this.u[i*2+2]+ret;}
+          console.log(nTmp);
+          if( nTmp==4 && i<3 ){ret=this.u[i*2]+this.u[i*2+1]+ret;}
+          else if( nTmp==9 && i<3 ){
+            ret=this.u[i*2]+this.u[i*2+2]+ret;
+          }
+          else{
+            for(var j=0 ; j<nTmp ; j++){
+              ret=this.u[i*2]+ret;
+            }
+          }
         }
       }else{
         for(var j=0 ; j<nTmp ; j++){
