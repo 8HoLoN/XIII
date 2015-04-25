@@ -31,3 +31,26 @@ number.getArabicNumerals()      // 4
 >```javascript
 XIII("XVII");                   // 17
 XIII("4");                      // "IV"
+
+* By default, the library is permissive, so a mistype number will be corrected.
+
+>```javascript
+var number = new XIII("IIII");
+number.getRomanNumerals();      // "IV"
+number.getArabicNumerals()      // 4
+```
+
+* Enable the extended mode.
+
+>```javascript
+var number = new XIII({
+  value:4367,
+  extendedMode:true
+});
+number.getRomanNumerals();      // "MMMMCCCLXVII"
+
+* Enable the strict mode.
+
+>```javascript
+XIII("IIII",{strictMode:true});   // false
+
