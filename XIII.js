@@ -16,8 +16,8 @@
 
     this.u = ['I','V','X','L','C','D','M'];
     this.extendedMode = _args.extendedMode || false;
-    this.authorizeLargeNumber = _args.authorizeLargeNumber || false;
-console.log('test',_v);
+    this.largeNumberNotation = _args.largeNumberNotation || false;
+
     if( (_v+'').match(/^[0-9]+$/) ){
       this.o = 0;
       this.aN = _v;
@@ -92,29 +92,35 @@ console.log('test',_v);
 
       _nTmp=Math.floor(_v/(Math.pow(10,i)))-Math.floor(_v/(Math.pow(10,i+1)))*10;
 
-      if( _nTmp>3 ){
-        if( _nTmp>4 && _nTmp<9 ){
+      if( _v <= 4999 && !this.largeNumberNotation ){
 
-          for( var j=0 ; j<_nTmp-5 ; j++ ){
-            _ret=this.u[i*2]+_ret;
-          }
-          _ret=this.u[i*2+1]+_ret;
-        }else{
-          if( _nTmp==4 && i<3 ){_ret=this.u[i*2]+this.u[i*2+1]+_ret;}
-          else if( _nTmp==9 && i<3 ){
-            _ret=this.u[i*2]+this.u[i*2+2]+_ret;
-          }
-          else{
-            for(var j=0 ; j<_nTmp ; j++){
+        if( _nTmp>3 ){
+          if( _nTmp>4 && _nTmp<9 ){
+
+            for( var j=0 ; j<_nTmp-5 ; j++ ){
               _ret=this.u[i*2]+_ret;
             }
+            _ret=this.u[i*2+1]+_ret;
+          }else{
+            if( i<3 ){
+              if( _nTmp==4 ){_ret=this.u[i*2]+this.u[i*2+1]+_ret;}
+              else if( _nTmp==9 ){_ret=this.u[i*2]+this.u[i*2+2]+_ret;}
+            }else{
+              for(var j=0 ; j<_nTmp ; j++){
+                _ret=this.u[i*2]+_ret;
+              }
+            }
+          }
+        }else{
+          for(var j=0 ; j<_nTmp ; j++){
+            _ret=this.u[i*2]+_ret;
           }
         }
-      }else{
-        for(var j=0 ; j<_nTmp ; j++){
-          _ret=this.u[i*2]+_ret;
-        }
+
+      }else{// from 5000
+        return 'max exceed';
       }
+
     }
     return _ret;
   };
