@@ -9,14 +9,15 @@
     _args = _args || {};
     if( typeof _v === 'object' ){
       _args = _v;
-      _v = _args.value || '';
+      _v = (typeof _args.value!=='undefined'?_args.value:'');
     }else{
-      _v = _v || '';
+      _v = (typeof _v!=='undefined'?_v:'');
     }
 
     this.u = ['I','V','X','L','C','D','M'];
     this.extendedMode = _args.extendedMode || false;
-
+    this.authorizeLargeNumber = _args.authorizeLargeNumber || false;
+console.log('test',_v);
     if( (_v+'').match(/^[0-9]+$/) ){
       this.o = 0;
       this.aN = _v;
