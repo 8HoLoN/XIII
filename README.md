@@ -14,7 +14,7 @@ M : 1000
 
 ## Basic use
 
-By default, the supported range for Roman numerals is between 1 and 3999.
+* By default, the supported range for Roman numerals is between 1 and 3999.
 
 >```javascript
 var number = new XIII(2);
@@ -26,8 +26,8 @@ var number = new XIII("IV");
 number.getRomanNumerals();      // "IV"
 number.getArabicNumerals()      // 4
 
-Calling the library as a regular function (i.e. without the new operator) will return the equivalent transformed value.
+* Calling the library as a regular function (i.e. without the new operator) will return the equivalent transformed value.
 
 >```javascript
-XIII('XVII');                   // 17
-XIII('4');                      // "IV"
+XIII("XVII");                   // 17
+XIII("4");                      // "IV"
