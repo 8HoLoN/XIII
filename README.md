@@ -51,7 +51,7 @@ number.getRomanNumerals();          // "MMMMCCCLXVII"
 XIII(4367);                         // "I̅V̅CCCLXVII"
 ```
 >```javascript
-XIII(4900900,{extendedMode:true})   // "M̅M̅M̅M̅C̅M̅CM"
+XIII(4900900,{extendedMode:true});   // "M̅M̅M̅M̅C̅M̅CM"
 XIII(4900900)                       // "I̿V̿C̅M̅CM"
 
 
