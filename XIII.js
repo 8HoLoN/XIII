@@ -25,6 +25,7 @@
     this.u = ['I','V','X','L','C','D','M'];
     this.extendedMode = _args.extendedMode || false;
     this.largeNumberNotation = _args.largeNumberNotation || false;
+    this.forceDoubleBarUse = _args.forceDoubleBarUse || false;
 
     if( (_v+'').match(/^[0-9]+$/) ){
       this.o = 0;
@@ -127,24 +128,35 @@
       }
 
     }else{// [5000;4999999]
+      var _arr=[];
       var _u = _v - Math.floor(_v/1e3)*1e3;
-      _u = this.a2r(_u);
+      _arr.unshift(this.a2r(_u));
 
       var _m = Math.floor(_v/1e3);
-      _m -= Math.floor(_v/1e6)*1e3; // only if > 4 999 999 => not MMMM bar
-      _m = this.a2r(_m).replace(/(.)/g,'$1\u0305');
+      if( _v <= 3999999 || (_v <= 4999999 && this.extendedMode) ){
+
+      }else{
+        _m -= Math.floor(_v/1e6)*1e3; // only if > 4 999 999 => not MMMM bar
+      }
+
+      _arr.unshift(this.a2r(_m).replace(/(.)/g,'$1\u0305'));
       //_m = this.a2r(_m)+'\u00B7M';// •M [5000;4999999]
 
-      var _mm = Math.floor(_v/1e6);
-      _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
-      _mm = this.a2r(_mm).replace(/(.)/g,'$1\u033F');
+      if( _v <= 3999999 || (_v <= 4999999 && this.extendedMode) ){// double bar
 
-      // use 1e5 previous level
-      var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
-      _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
-      _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm)
+      }else{
+        var _mm = Math.floor(_v/1e6);
+        _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
+        _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
 
-      return _mmm + _mm + _m + _u;
+        // use 1e5 previous level
+        var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
+        _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
+        _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm)
+      }
+
+
+      return _arr.join('');
       //return 'max exceed';
     }
 
