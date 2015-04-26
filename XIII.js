@@ -96,7 +96,7 @@
     var _ret='';
     var _nTmp=0;
 
-    if( _v <= 4999 && !this.largeNumberNotation ){
+    if( _v <= 3999 || (_v <= 4999 && this.extendedMode) ){
 
       for( var i=0 ; Math.floor(_v/(Math.pow(10,i))) > 0 ; i++ ){
 

@@ -48,6 +48,10 @@ var number = new XIII({
   extendedMode:true
 });
 number.getRomanNumerals();      // "MMMMCCCLXVII"
+```
+>```javascript
+XIII(4367);                     // "I̅V̅CCCLXVII"
+
 
 * Enable the strict mode.
 
