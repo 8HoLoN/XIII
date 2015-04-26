@@ -10,7 +10,7 @@
   'use strict';
   function XIII(_v,_args){
 
-    if (typeof this === 'undefined' ) {
+    if (typeof this === 'undefined' || this === window ) {
       return new XIII(_v,_args).getOppositeNumerals();
     };
 
