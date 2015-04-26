@@ -88,15 +88,14 @@
     var _ret='';
     var _nTmp=0;
 
-    for( var i=0 ; Math.floor((_v/(Math.pow(10,i)))) > 0 ; i++ ){
+    if( _v <= 4999 && !this.largeNumberNotation ){
 
-      _nTmp=Math.floor(_v/(Math.pow(10,i)))-Math.floor(_v/(Math.pow(10,i+1)))*10;
+      for( var i=0 ; Math.floor(_v/(Math.pow(10,i))) > 0 ; i++ ){
 
-      if( _v <= 4999 && !this.largeNumberNotation ){
+        _nTmp=Math.floor(_v/(Math.pow(10,i)))-Math.floor(_v/(Math.pow(10,i+1)))*10;
 
         if( _nTmp>3 ){
           if( _nTmp>4 && _nTmp<9 ){
-
             for( var j=0 ; j<_nTmp-5 ; j++ ){
               _ret=this.u[i*2]+_ret;
             }
@@ -117,11 +116,30 @@
           }
         }
 
-      }else{// from 5000
-        return 'max exceed';
       }
 
+    }else{// [5000;4999999]
+      var _u = _v - Math.floor(_v/1e3)*1e3;
+      _u = this.a2r(_u);
+
+      var _m = Math.floor(_v/1e3);
+      _m -= Math.floor(_v/1e6)*1e3; // only if > 4 999 999 => not MMMM bar
+      _m = this.a2r(_m).replace(/(.)/g,'$1\u0305');
+      //_m = this.a2r(_m)+'\u00B7M';// •M [5000;4999999]
+
+      var _mm = Math.floor(_v/1e6);
+      _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
+      _mm = this.a2r(_mm).replace(/(.)/g,'$1\u033F');
+
+      // use 1e5 previous level
+      var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
+      _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
+      _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm)
+
+      return _mmm + _mm + _m + _u;
+      //return 'max exceed';
     }
+
     return _ret;
   };
 
