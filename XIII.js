@@ -1,4 +1,5 @@
-/**
+/*!* @preserve
+ *
  * https://github.com/8HoLoN/XIII
  * @version: 0.20.00 ( April 2015 )
  * @author 8HoLoN / https://github.com/8HoLoN/
