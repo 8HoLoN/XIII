@@ -144,7 +144,7 @@
 
       if( _v <= 3999999 || (_v <= 4999999 && this.extendedMode) ){// double bar
 
-      }else{
+      }else if( _v <= 3999999999 || (_v <= 4999999999 && this.extendedMode) ){
         var _mm = Math.floor(_v/1e6);
         _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
         _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
