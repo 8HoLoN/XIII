@@ -18,26 +18,26 @@ M : 1000
 
 >```javascript
 var number = new XIII(2);
-number.getRomanNumerals();          // "II"
-number.getArabicNumerals()          // 2
+number.getRomanNumerals();            // "II"
+number.getArabicNumerals()            // 2
 ```
 >```javascript
 var number = new XIII("IV");
-number.getRomanNumerals();          // "IV"
-number.getArabicNumerals()          // 4
+number.getRomanNumerals();            // "IV"
+number.getArabicNumerals()            // 4
 
 * Calling the library as a regular function (i.e. without the new operator) will return the equivalent transformed value.
 
 >```javascript
-XIII("XVII");                       // 17
-XIII("4");                          // "IV"
+XIII("XVII");                         // 17
+XIII("4");                            // "IV"
 
 * By default, the library is permissive, so a mistype number will be corrected.
 
 >```javascript
 var number = new XIII("IIII");
-number.getRomanNumerals();          // "IV"
-number.getArabicNumerals()          // 4
+number.getRomanNumerals();            // "IV"
+number.getArabicNumerals();           // 4
 ```
 
 * Enable the extended mode.
@@ -47,16 +47,20 @@ var number = new XIII({
   value:4367,
   extendedMode:true
 });
-number.getRomanNumerals();          // "MMMMCCCLXVII"
-XIII(4367);                         // "I̅V̅CCCLXVII"
+number.getRomanNumerals();            // "MMMMCCCLXVII"
+XIII(4367);                           // "I̅V̅CCCLXVII"
 ```
 >```javascript
-XIII(4900900,{extendedMode:true});   // "M̅M̅M̅M̅C̅M̅CM"
-XIII(4900900)                       // "I̿V̿C̅M̅CM"
+XIII(4900900,{extendedMode:true});    // "M̅M̅M̅M̅C̅M̅CM"
+XIII(4900900);                        // "I̿V̿C̅M̅CM"
+```
+>```javascript
+XIII(4999999999);                     // RangeError: Parameter must be between 1 and 3999999999
+XIII(4999999999,{extendedMode:true}); // "M̿M̿M̿M̿C̿M̿X̿C̿I̿X̿C̅M̅X̅C̅I̅X̅CMXCIX"
 
 
 * Enable the strict mode.
 
 >```javascript
-XIII("IIII",{strictMode:true});     // false
+XIII("IIII",{strictMode:true});       // false
 

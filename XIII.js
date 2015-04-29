@@ -148,6 +148,8 @@
           _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
           _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
 
+          throw new RangeError('Parameter must be between ' + 1 + ' and ' + 3999999999);
+
           // use 1e5 previous level
           var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
           _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
