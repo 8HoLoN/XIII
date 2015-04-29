@@ -57,6 +57,10 @@ XIII(4900900);                        // "I̿V̿C̅M̅CM"
 >```javascript
 XIII(4999999999);                     // RangeError: Parameter must be between 1 and 3999999999
 XIII(4999999999,{extendedMode:true}); // "M̿M̿M̿M̿C̿M̿X̿C̿I̿X̿C̅M̅X̅C̅I̅X̅CMXCIX"
+XIII(49999999999,{                    // "|M̿M̿M̿M̿C̿M̿X̿C̿|X̿C̿I̿X̿C̅M̅X̅C̅I̅X̅CMXCIX"
+  forceSideBarsUse:true,
+  extendedMode:true
+});
 
 
 * Enable the strict mode.

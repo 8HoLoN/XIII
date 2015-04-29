@@ -26,6 +26,7 @@
     this.extendedMode = _args.extendedMode || false;
     this.largeNumberNotation = _args.largeNumberNotation || false;
     this.forceDoubleBarUse = _args.forceDoubleBarUse || false;
+    this.forceSideBarsUse = (typeof _args.forceSideBarsUse==='boolean'?_args.forceSideBarsUse:false);
 
     if( (_v+'').match(/^[0-9]+$/) ){
       this.o = 0;
@@ -145,15 +146,34 @@
         if( _v <= 3999999999 || (_v <= 4999999999 && this.extendedMode) ){
           _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
         }else{
-          _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
-          _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
 
-          throw new RangeError('Parameter must be between ' + 1 + ' and ' + 3999999999);
 
-          // use 1e5 previous level
-          var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
-          _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
-          _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm);
+          if( this.forceSideBarsUse && _v <= 39999999999 || (_v <= 49999999999 && this.extendedMode) ){
+            /*
+            _mm -= Math.floor(_v/1e9)*1e3;// only if > 4 999 999 999 => not MMMM bar
+            _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
+
+            // use 1e5 previous level
+            var _mmm = Math.floor(_v/1e9);// max number 499,999,999,999
+            _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
+            _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm);
+            _arr.unshift(_mmm);
+            /*/
+            _mm -= Math.floor(_v/1e8)*1e2;// only if > 4 999 999 999 => not MMMM bar
+            _arr.unshift(this.a2r(_mm).replace(/(.)/g,'$1\u033F'));
+
+            // use 1e5 previous level
+            var _mmm = Math.floor(_v/1e8);// max number 499,999,999,999
+            _mmm = this.a2r(_mmm*10).replace(/(.)/g,'$1\u033F');
+            _mmm = (_mmm!=''?'|'+_mmm+'|':_mmm);
+            _arr.unshift(_mmm);
+            //*/
+          }else{
+            throw new RangeError('Parameter must be between ' + 1 + ' and ' + 3999999999);
+          }
+
+
+
         }
 
       }
