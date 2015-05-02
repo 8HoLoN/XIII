@@ -30,7 +30,7 @@ unsigned int RNum::or2a(char n){
 
 	for(unsigned int j=0;j<7;j++){
 		if(n==u[j][0]){
-			ret=(unsigned int)floor(pow(10.,j-(j>>1))*((~j&0x01)+1))>>1;
+			ret=((unsigned int)floor(pow(10.,j-(j>>1)))*((~j&0x01)+1))>>1;
 		}
 	}
 	return ret;
