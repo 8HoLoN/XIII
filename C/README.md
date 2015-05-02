@@ -14,6 +14,8 @@ XIII* number = XIII_construct((XIII*)malloc (sizeof(XIII)),NULL,3984);
 number->nbAra;                                                          // 3984
 number->nb;                                                             // "MMMCMLXXXIV"
 XIII_destruct(number);
+```
+>```c
 XIII* number2 = XIII_construct((XIII*)malloc (sizeof(XIII)),"V",0);
 number2->nbAra;                                                          // 5
 number2->nb;                                                             // "V"
