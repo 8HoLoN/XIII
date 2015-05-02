@@ -18,6 +18,7 @@ XIII* XIII_construct(XIII* _xii, char* _nb, int _nbAra){
 		_xii->nbAra=_nbAra;
 		_xii->nb=XIII_a2r(_nbAra);
 	}else{
+		_xii->nbAra=1;
 		_xii->nb=(char*)malloc (sizeof(char)+1);
 		_xii->nb[0]='I';
 		_xii->nb[0]='\0';
@@ -33,18 +34,18 @@ XIII* XIII_destruct(XIII* _xii){
 	_xii=NULL;
 	return _xii;
 }
-int XIII_or2a(char n){
-	int ret=1,j=0;
+unsigned int XIII_or2a(char n){
+	unsigned int ret=1,j=0;
 	for(j=0;j<7;j++){
 		if(n==XIII_u[j]){
-			ret=(int)(pow(10.,j-(j>>1))*((~j&0x01)+1))>>1;
+			ret=((int)floor(pow(10.,j-(j>>1)))*((~j&0x01)+1))>>1;
 		}
 	}
 	return ret;
 }
 unsigned int XIII_r2a(char* n){
-	int ret=1;//0ou1
-	int last=0;
+	unsigned int ret=1;//0ou1
+	unsigned int last=0;
 	unsigned int tot=0;
 	unsigned int i=0;
 	
