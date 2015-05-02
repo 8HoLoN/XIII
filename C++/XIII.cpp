@@ -71,6 +71,7 @@ string RNum::a2r(int n){//ok [0-3999]
 		
 		nTmp=(n/((int)pow(10.,i)))-(n/((int)pow(10.,i+1)))*10;
 		cout<< "nTmp" << nTmp << endl;
+		cout<< "nTmp" << ((int)pow(10.,i+1)) << endl;
 		if(nTmp>3){
 			if(nTmp>4 && nTmp<9){
 				
