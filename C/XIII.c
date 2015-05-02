@@ -10,7 +10,7 @@
 
 char XIII_u[]="IVXLCDM";
 
-XIII* XIII_construct(XIII* _xii, char* _nb, int _nbAra){
+XIII* XIII_construct(XIII* _xii, char* _nb, unsigned int _nbAra){
 	if( _nb!=NULL ){
 		_xii->nb=_nb;
 		_xii->nbAra=XIII_r2a(_nb);
@@ -38,7 +38,7 @@ unsigned int XIII_or2a(char n){
 	unsigned int ret=1,j=0;
 	for(j=0;j<7;j++){
 		if(n==XIII_u[j]){
-			ret=((int)floor(pow(10.,j-(j>>1)))*((~j&0x01)+1))>>1;
+			ret=((unsigned int)floor(pow(10.,j-(j>>1)))*((~j&0x01)+1))>>1;
 		}
 	}
 	return ret;
@@ -73,9 +73,9 @@ char* XIII_a2r(unsigned int n){//ok [0-3999]
 	strcpy(ret, "");
 	unsigned int nTmp=0,i=0,j=0;
 	
-	for(i=0 ; (n/(int)floor(pow(10.,i))) > 0 ; i++){
+	for(i=0 ; (n/(unsigned int)floor(pow(10.,i))) > 0 ; i++){
 		
-		nTmp=(n/(int)floor(pow(10.,i)))-(n/(int)floor(pow(10.,i+1)))*10;
+		nTmp=(n/(unsigned int)floor(pow(10.,i)))-(n/(unsigned int)floor(pow(10.,i+1)))*10;
 
 		if(nTmp>3){
 			if(nTmp>4 && nTmp<9){
