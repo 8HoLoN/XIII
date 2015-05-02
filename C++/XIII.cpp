@@ -18,28 +18,27 @@ RNum::RNum(string n){
 	nb=n;
 	nbAra=r2a(n);
 }
-RNum::RNum(int n){
+RNum::RNum(unsigned int n){
 	nb=a2r(n);
 	nbAra=n;
 }
 RNum::~RNum(){
 
 }
-int RNum::or2a(char n){
-	int ret=1;
+unsigned int RNum::or2a(char n){
+	unsigned int ret=1;
 
-	for(int j=0;j<7;j++){
+	for(unsigned int j=0;j<7;j++){
 		if(n==u[j][0]){
-			ret=(int)(pow(10.,j-(j>>1))*((~j&0x01)+1))>>1;
+			ret=(unsigned int)floor(pow(10.,j-(j>>1))*((~j&0x01)+1))>>1;
 		}
 	}
-	//
 	return ret;
 }
-int RNum::r2a(string n){
-	int ret=1;//0ou1
-	int last=0;
-	int tot=0;
+unsigned int RNum::r2a(string n){
+	unsigned int ret=1;//0ou1
+	unsigned int last=0;
+	unsigned int tot=0;
 	
 	ret=or2a(n[0]);
 	last=ret;
@@ -63,19 +62,19 @@ int RNum::r2a(string n){
 	tot=tot+last;
 	return tot;
 }
-string RNum::a2r(int n){//ok [0-3999]
+string RNum::a2r(unsigned int n){//ok [0-3999]
 	string ret="";
-	int nTmp=0;
+	unsigned int nTmp=0;
 
-	for(int i=0 ; (n/((int)pow(10.,i))) > 0 ; i++){
+	for(unsigned int i=0 ; (n/((unsigned int)floor(pow(10.,i)))) > 0 ; i++){
 		
-		nTmp=(n/((int)pow(10.,i)))-(n/((int)pow(10.,i+1)))*10;
-		cout<< "nTmp" << nTmp << endl;
-		cout<< "nTmp" << ((int)pow(10.,i+1)) << endl;
+		nTmp=(n/((unsigned int)floor(pow(10.,i))))-(n/((unsigned int)floor(pow(10.,i+1))))*10;
+		//cout<< "nTmp" << nTmp << endl;
+		//cout<< "nTmp" << ((unsigned int)floor(pow(10.,i+1))) << endl;
 		if(nTmp>3){
 			if(nTmp>4 && nTmp<9){
 				
-				for(int j=0;j<nTmp-5;j++){
+				for(unsigned int j=0;j<nTmp-5;j++){
 					ret=RNum::u[i*2]+ret;
 				}
 				ret=RNum::u[i*2+1]+ret;
@@ -84,7 +83,7 @@ string RNum::a2r(int n){//ok [0-3999]
 				else{ret=RNum::u[i*2]+RNum::u[i*2+2]+ret;}
 			}			
 		}else{
-			for(int j=0;j<nTmp;j++){
+			for(unsigned int j=0;j<nTmp;j++){
 				ret=RNum::u[i*2]+ret;
 			}
 		}

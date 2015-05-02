@@ -16,7 +16,7 @@
 
 typedef struct {
   char* nb;
-  int nbAra;
+  unsigned int nbAra;
 } XIII;
 
 XIII* XIII_construct(XIII* _xii,char* nb,unsigned int nbAra);

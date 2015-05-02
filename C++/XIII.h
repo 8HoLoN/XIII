@@ -20,7 +20,7 @@ class RNum {
 	
 	private:
 		string nb;
-		int nbAra;
+		unsigned int nbAra;
 	public:
 		static string u[];
 
@@ -31,28 +31,16 @@ class RNum {
 	public:
 		RNum();
 		RNum(string);
-		RNum(int);
+		RNum(unsigned int);
 		~RNum();
 		
-		int or2a(char);
-		int r2a(string);
-		string a2r(int);
+		unsigned int or2a(char);
+		unsigned int r2a(string);
+		string a2r(unsigned int);
 		
 
 		void print(void);
 		
-	/*
-	I	1
-	V	5
-	X	10
-	L	50
-	C	100
-	D	500
-	M	1000
-
-	max 4999
-	*/
-
 };
 
 #endif //RNUM_H
