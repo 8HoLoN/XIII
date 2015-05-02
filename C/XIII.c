@@ -13,16 +13,22 @@ char XIII_u[]="IVXLCDM";
 XIII* XIII_construct(XIII* _xii, char* _nb, int _nbAra){
 	if( _nb!=NULL ){
 		_xii->nb=_nb;
-		_xii->nbAra=1;
+		_xii->nbAra=XIII_r2a(_nb);
 	}else if( _nbAra!=0 ){
 		_xii->nbAra=_nbAra;
-		_xii->nb=(char*)malloc (sizeof(char));
-		_xii->nb="I";
+		_xii->nb=XIII_a2r(_nbAra);
+	}else{
+		_xii->nb=(char*)malloc (sizeof(char)+1);
+		_xii->nb[0]='I';
+		_xii->nb[0]='\0';
 	}
 	
 	return 	_xii;
 }
 XIII* XIII_destruct(XIII* _xii){
+	free(_xii->nb);
+	_xii->nb=NULL;
+	
 	free(_xii);
 	_xii=NULL;
 	return _xii;
@@ -36,14 +42,40 @@ int XIII_or2a(char n){
 	}
 	return ret;
 }
-char* XIII_a2r(int n){//ok [0-3999]
+unsigned int XIII_r2a(char* n){
+	int ret=1;//0ou1
+	int last=0;
+	unsigned int tot=0;
+	unsigned int i=0;
+	
+	ret=XIII_or2a(n[0]);
+	last=ret;
+	for(i=1 ; i<strlen(n) ; i++){
+		
+		ret=XIII_or2a(n[i]);
+		
+		if(ret<=last){
+			tot=tot+last;
+		}else{
+			tot=tot+(ret-last);
+			ret=0;
+			if(i+1<strlen(n)){ret=XIII_or2a(n[++i]);}
+		}
+		
+		last=ret;	
+	}
+	tot=tot+last;
+	return tot;
+}
+char* XIII_a2r(unsigned int n){//ok [0-3999]
 	char* ret=(char*)malloc (sizeof(char)*1);
 	strcpy(ret, "");
-	int nTmp=0,i=0,j=0;
+	unsigned int nTmp=0,i=0,j=0;
 	
-	for(i=0 ; ((int)(n/pow(10.,i))) > 0 ; i++){
+	for(i=0 ; (n/(int)floor(pow(10.,i))) > 0 ; i++){
 		
-		nTmp=((int)(n/pow(10.,i)))-(int)(n/pow(10.,i+1))*10;
+		nTmp=(n/(int)floor(pow(10.,i)))-(n/(int)floor(pow(10.,i+1)))*10;
+
 		if(nTmp>3){
 			if(nTmp>4 && nTmp<9){
 				
@@ -68,7 +100,6 @@ char* concat(char *s1, char *s2, int mode){
 		if(strlen(s2) + 1 >= 100) {
 			return NULL;
 		}
-		int len = strlen(s2);
 		char* _s1 = (char*)malloc(sizeof(char)*1+strlen(s2)+1);
 		_s1[0]=s1[0];
 		_s1[1]='\0';
@@ -87,50 +118,3 @@ char* concat(char *s1, char *s2, int mode){
 	}
     
 }
-/*
-RNum::RNum(){
-	nb="I";
-	nbAra=1;
-}
-RNum::RNum(string n){
-	nb=n;
-	nbAra=r2a(n);
-}
-RNum::RNum(int n){
-	nb=a2r(n);
-	nbAra=n;
-}
-
-
-int RNum::r2a(string n){
-	int ret=1;//0ou1
-	int last=0;
-	int tot=0;
-	
-	ret=or2a(n[0]);
-	last=ret;
-	for(unsigned int i=1 ; i<n.size() ; i++){
-		
-		ret=or2a(n[i]);
-		
-		if(ret<=last){
-			//tot=tot+ret;
-			tot=tot+last;
-			//cout
-		}else{
-			//tot=ret-last;
-			tot=tot+(ret-last);
-			ret=0;
-			if(i+1<n.size()){ret=or2a(n[++i]);}
-		}
-		
-		last=ret;	
-	}
-	tot=tot+last;
-	return tot;
-}
-
-void RNum::print(void){
-	cout << nb << ":" << nbAra ;
-}
-//*/

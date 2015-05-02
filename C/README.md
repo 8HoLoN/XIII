@@ -13,7 +13,12 @@ A library to handle Roman numerals
 XIII* number = XIII_construct((XIII*)malloc (sizeof(XIII)),NULL,3984);
 number->nbAra;                                                          //
 number->nb;                                                             // MMMCMLXXXIV
+XIII_destruct(number);
 XIII* number2 = XIII_construct((XIII*)malloc (sizeof(XIII)),"V",0);
 number->nbAra;                                                          //
 number->nb;                                                             //
+XIII_destruct(number2);
 ```
+>```c
+printf("%s\n",XIII_a2r(3984));                                          // MMMCMLXXXIV
+printf("%d\n",XIII_r2a("VIII"));                                        // 8

@@ -23,8 +23,8 @@ XIII* XIII_construct(XIII*,char* nb, int nbAra);
 XIII* XIII_destruct(XIII* _xii);
 
 int XIII_or2a(char);
-int XIII_r2a(char*);
-char* XIII_a2r(int);
+unsigned int XIII_r2a(char*);
+char* XIII_a2r(unsigned int);
 
 char* concat(char *s1, char *s2, int mode);
 
