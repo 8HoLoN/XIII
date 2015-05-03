@@ -27,6 +27,7 @@
     this.largeNumberNotation = _args.largeNumberNotation || false;
     this.forceDoubleBarUse = _args.forceDoubleBarUse || false;
     this.forceSideBarsUse = (typeof _args.forceSideBarsUse==='boolean'?_args.forceSideBarsUse:false);
+    this.strictMode = (typeof _args.strictMode==='boolean'?_args.strictMode:false);
 
     if( (_v+'').match(/^[0-9]+$/) ){
       this.o = 0;
@@ -41,8 +42,6 @@
       this.aN = 1;
     }
 
-    this.strictMode = false;
-
   }
 
   _g.XIII = XIII;
@@ -56,6 +55,11 @@
   };
 
   XIII.prototype.getOppositeNumerals = function() {
+    if( this.strictMode ){
+      if( this.a2r(this.aN) !== this.rN ){
+        return false;
+      }
+    }
     return this.o?this.aN:this.rN;
   };
 
