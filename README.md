@@ -1,5 +1,5 @@
-# XIII
-A library to handle Roman numerals
+# XIII (JS)
+A library to handle Roman numerals in JS/C/C++
 
 ## Reminder of the bases
 
