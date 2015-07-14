@@ -8,24 +8,24 @@
  */
 #include "XIII.h"
 
-string RNum::u[]={"I","V","X","L","C","D","M"};
+string XIII::u[]={"I","V","X","L","C","D","M"};
 
-RNum::RNum(){
+XIII::XIII(){
 	nb="I";
 	nbAra=1;
 }
-RNum::RNum(string n){
+XIII::XIII(string n){
 	nb=n;
 	nbAra=r2a(n);
 }
-RNum::RNum(unsigned int n){
+XIII::XIII(unsigned int n){
 	nb=a2r(n);
 	nbAra=n;
 }
-RNum::~RNum(){
+XIII::~XIII(){
 
 }
-unsigned int RNum::or2a(char n){
+unsigned int XIII::or2a(char n){
 	unsigned int ret=1;
 
 	for(unsigned int j=0;j<7;j++){
@@ -35,7 +35,7 @@ unsigned int RNum::or2a(char n){
 	}
 	return ret;
 }
-unsigned int RNum::r2a(string n){
+unsigned int XIII::r2a(string n){
 	unsigned int ret=1;//0ou1
 	unsigned int last=0;
 	unsigned int tot=0;
@@ -62,7 +62,7 @@ unsigned int RNum::r2a(string n){
 	tot=tot+last;
 	return tot;
 }
-string RNum::a2r(unsigned int n){//ok [0-3999]
+string XIII::a2r(unsigned int n){//ok [0-3999]
 	string ret="";
 	unsigned int nTmp=0;
 
@@ -75,21 +75,21 @@ string RNum::a2r(unsigned int n){//ok [0-3999]
 			if(nTmp>4 && nTmp<9){
 				
 				for(unsigned int j=0;j<nTmp-5;j++){
-					ret=RNum::u[i*2]+ret;
+					ret=XIII::u[i*2]+ret;
 				}
-				ret=RNum::u[i*2+1]+ret;
+				ret=XIII::u[i*2+1]+ret;
 			}else{
-				if(nTmp==4){ret=RNum::u[i*2]+RNum::u[i*2+1]+ret;}
-				else{ret=RNum::u[i*2]+RNum::u[i*2+2]+ret;}
+				if(nTmp==4){ret=XIII::u[i*2]+XIII::u[i*2+1]+ret;}
+				else{ret=XIII::u[i*2]+XIII::u[i*2+2]+ret;}
 			}			
 		}else{
 			for(unsigned int j=0;j<nTmp;j++){
-				ret=RNum::u[i*2]+ret;
+				ret=XIII::u[i*2]+ret;
 			}
 		}
 	}
 	return ret;
 }
-void RNum::print(void){
+void XIII::print(void){
 	cout << nb << ":" << nbAra ;
 }

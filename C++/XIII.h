@@ -6,8 +6,8 @@
  * < 8holon [at] gmail.com >
  * Copyright (c) 2011-2015 Alexandre REMY
  */
-#ifndef RNUM_H
-#define RNUM_H
+#ifndef XIII_H
+#define XIII_H
 
 #include <iostream>
 #include <cmath>
@@ -16,7 +16,7 @@
 using namespace std; 
 
 
-class RNum {
+class XIII {
 	
 	private:
 		string nb;
@@ -29,10 +29,10 @@ class RNum {
 		void setNb(string n){nb=n;}
 	
 	public:
-		RNum();
-		RNum(string);
-		RNum(unsigned int);
-		~RNum();
+		XIII();
+		XIII(string);
+		XIII(unsigned int);
+		~XIII();
 		
 		unsigned int or2a(char);
 		unsigned int r2a(string);
@@ -43,4 +43,4 @@ class RNum {
 		
 };
 
-#endif //RNUM_H
+#endif //XIII_H
