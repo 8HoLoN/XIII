@@ -10,5 +10,11 @@ A library to handle Roman numerals in [JS](https://github.com/8HoLoN/XIII)/[C](h
 * By default, the supported range for Roman numerals is between 1 and 3999.
 
 >```c++
-RNum c(3984);                         // MMMCMLXXXIV
+XIII c(3984);                         // MMMCMLXXXIV
+XIII c("VIII");                       // 8
+```
+>```c++
+XIII t;
+t.a2r(3984);                          // MMMCMLXXXIV
+t.r2a("VIII");                        // 8
 ```
