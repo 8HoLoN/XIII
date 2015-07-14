@@ -3,7 +3,7 @@ A library to handle Roman numerals in [JS](https://github.com/8HoLoN/XIII)/[C](h
 
 ## Include library
 >```c++
-#include "rNum.h"
+#include "XIII.h"
 
 ## Basic use
 
