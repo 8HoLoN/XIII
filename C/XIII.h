@@ -6,8 +6,8 @@
  * < 8holon [at] gmail.com >
  * Copyright (c) 2011-2015 Alexandre REMY
  */
-#ifndef RNUM_H
-#define RNUM_H
+#ifndef XIII_H
+#define XIII_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,4 +28,4 @@ char* XIII_a2r(unsigned int);
 
 char* concat(char *s1, char *s2, int mode);
 
-#endif //RNUM_H
+#endif //XIII_H
